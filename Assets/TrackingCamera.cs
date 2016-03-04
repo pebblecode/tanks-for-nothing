@@ -19,9 +19,7 @@ public class TrackingCamera : MonoBehaviour {
 		}
 
 		center /= players.Count;
-		//center = players[3].transform.position;
-		//Debug.Log (string.Format("{0} {1} {2} {3}", center.x, center.y, center.z, players[3].name));
-
+	
 		if (players.Count > 0) {
 			var h = players.Select(p => (p.transform.position - center).magnitude / Mathf.Tan(angle)).Max();
 			h = Mathf.Max (h, 5);
