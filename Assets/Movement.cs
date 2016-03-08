@@ -31,6 +31,7 @@ public class Movement : MonoBehaviour {
 				rb.AddForce(new Vector3(0, 100, 0) * 10);
 			}
 		}
+<<<<<<< HEAD
 
 
 		var turret = transform.Find("Tank/TankRenderers/TankTurret");
@@ -40,5 +41,7 @@ public class Movement : MonoBehaviour {
 			var dir =  new Vector3(playerController.rightStick.x, 0, -playerController.rightStick.z);
 			turret.rotation = Quaternion.LookRotation (dir);
 		}
+=======
+>>>>>>> 414facc9fac1f0df8fdd50d1d4fffe3894b6f834
 	}
 }
