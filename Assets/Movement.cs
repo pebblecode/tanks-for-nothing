@@ -14,13 +14,12 @@ public class Movement : MonoBehaviour {
 		var movement = new Vector3 (playerController.leftStick.x, playerController.leftStick.y, -playerController.leftStick.z);
 		var rb = GetComponent<Rigidbody> ();
 
-		rb.AddForce (movement * 10);
+		rb.AddForce (movement * 100);
 
 		if (movement.sqrMagnitude > 0.1)
 			transform.rotation = Quaternion.LookRotation(movement);
 
 		if (playerController.aButton) {
-			Debug.Log("YEA");
 			rb.AddForce(new Vector3(0, 100, 0) * 10);
 		}
 
