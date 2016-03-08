@@ -26,14 +26,9 @@ public class Hud : MonoBehaviour
 
 		var sb = new System.Text.StringBuilder ();
 		foreach (var player in players) {
-			
-			
 			var playerController = player.GetComponent<PlayerController> ();
 			var health = player.GetComponent<TankHealth> ();
-			if (playerController != null) {
-				//score.text = string.Format ("{0}", playerController.ammo);
-				sb.AppendFormat("{0}: Health {1} Ammo {2}\n", playerController.playerNumber, Mathf.Ceil(health.health), health.ammo);
-			}
+			sb.AppendFormat("{0}: Health {1} Ammo {2}\n", playerController.playerNumber, Mathf.Ceil(health.health), health.ammo);
 		}
 		score.text = sb.ToString ();
 	}
