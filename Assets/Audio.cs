@@ -8,19 +8,14 @@ public class Audio : MonoBehaviour {
 	public AudioClip idle;
 	public AudioClip driving;
 	private float lastShot;
-	// Use this for initialization
-	void Start () {
-	
+
+	public void Fire() {
+		fireAudioSource.clip = fire;
+		fireAudioSource.Play();		
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+	public void Update () {
 		var player = GetComponent<PlayerController> ();
-		if (player.rightTrigger > 0.5 && lastShot + 0.3 < Time.time) {
-			lastShot = Time.time;
-			fireAudioSource.clip = fire;
-			fireAudioSource.Play();
-		}
 
 		if (player.leftStick.magnitude > 0 && engineAudioSource.clip != driving) { 
 			engineAudioSource.clip = driving;

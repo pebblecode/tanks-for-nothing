@@ -13,6 +13,7 @@ public class Turret : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		var playerController = GetComponent<PlayerController> ();
+		var audio = GetComponent<Audio> ();
 		var turret = transform.Find("Tank/TankRenderers/TankTurret");
 		var turretFire = transform.Find("Tank/TankRenderers/TankTurret/Fire");
 
@@ -24,6 +25,7 @@ public class Turret : MonoBehaviour {
 		}	
 
 		if (playerController.rightTrigger > 0.5 && lastShot + 0.5 < Time.time) {
+			audio.Fire ();
 			lastShot = Time.time;
 			var shell = Resources.Load<GameObject>("Shell");
 			var shellInstane = (GameObject)Instantiate(shell, turretFire.position, new Quaternion());
