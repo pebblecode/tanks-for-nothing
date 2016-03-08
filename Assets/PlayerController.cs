@@ -10,12 +10,12 @@ public class PlayerController : MonoBehaviour {
 	public float leftTrigger;
 	public float rightTrigger;
 
-	public Color[] colours = new Color[]
-	{   new Color(255,0,255),
-		new Color(255,0,255),
-		new Color(0,0,255),
-		new Color(255,0,0),
-		new Color(0,255,255)};
+	public Color[] xxx = new Color[]
+	{   new Color(0,0,0),
+		new Color(0.5f,0,0.5f,1.0f),
+		new Color(0,0,0.5f),
+		new Color(0.5f,0,0),
+		new Color(0,0.5f,0.5f)};
 
 	// Use this for initialization
 	void Start () {
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour {
 		for (int i = 0; i < renderers.Length; i++)
 		{
 			// ... set their material color to the color specific to this tank.
-			renderers[i].material.color = colours[playerNumber];
+			renderers[i].material.color = xxx[playerNumber];
 		}
 	}
 	

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
 		var controllers = Input.GetJoystickNames ();
 
 		int i = 1;
-		foreach (var controller in controllers) {
+		foreach (var _ in controllers) {
 			var resource = Resources.Load<GameObject>("Player");
 			var playerClone = (GameObject)Instantiate(resource, new Vector3(2*i,2,1), new Quaternion());
 			var pc = playerClone.GetComponent<PlayerController> ();
