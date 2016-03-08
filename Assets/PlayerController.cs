@@ -52,8 +52,8 @@ public class PlayerController : MonoBehaviour {
 		// if (other.gameObject.CompareTag ("Bad Pickup")) {
 		// 	other.gameObject.SetActive (false);
 		// }
-		if (other.gameObject.CompareTag ("Goal")) {
-		}
+		// if (other.gameObject.CompareTag ("Goal")) {
+		// }
 
 	}
 

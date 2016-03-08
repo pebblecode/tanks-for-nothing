@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Movement : MonoBehaviour {
 
+	public float distToGround;
+	public bool isGrounded;
+
 	// Use this for initialization
 	void Start () {
 	}
@@ -11,16 +14,22 @@ public class Movement : MonoBehaviour {
 	void Update () {
 
 		var playerController = GetComponent<PlayerController> ();
-		var movement = new Vector3 (playerController.leftStick.x, playerController.leftStick.y, -playerController.leftStick.z);
+
+		distToGround = (playerController.GetComponent<Collider>().bounds.extents.y + 0.1f);
+		isGrounded = Physics.Raycast(transform.position, -Vector3.up, distToGround);
+
 		var rb = GetComponent<Rigidbody> ();
 
-		rb.AddForce (movement * 30);
+		var movement = new Vector3 (playerController.leftStick.x, playerController.leftStick.y, -playerController.leftStick.z);
+		rb.AddForce (movement * 30);	
 
 		if (movement.sqrMagnitude > 0.1)
 			transform.rotation = Quaternion.LookRotation(movement);
-
-		if (playerController.aButton) {
-			rb.AddForce(new Vector3(0, 100, 0) * 10);
+		
+		if (isGrounded) {
+			if (playerController.aButton) {
+				rb.AddForce(new Vector3(0, 100, 0) * 10);
+			}
 		}
 	}
 }
