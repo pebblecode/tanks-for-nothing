@@ -4,7 +4,7 @@ using System.Collections;
 public class Movement : MonoBehaviour {
 
 	public float terminalVelocity = 10;
-	public float maxAcceleration = 1000;
+	public float maxAcceleration = 100;
 
 	// Use this for initialization
 	void Start () {
@@ -12,9 +12,9 @@ public class Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		var moveHorizontal = Input.GetAxis ("Horizontal");
-		var moveVertical = Input.GetAxis ("Vertical");
-		var movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
+
+		var playerController = GetComponent<PlayerController> ();
+		var movement = new Vector3 (playerController.leftStick.x, playerController.leftStick.y, -playerController.leftStick.z);
 		var rb = GetComponent<Rigidbody> ();
 
 		rb.AddForce (movement * 1000);
@@ -22,6 +22,8 @@ public class Movement : MonoBehaviour {
 		var idealDrag = maxAcceleration / terminalVelocity;
 		rb.drag = idealDrag / (idealDrag * Time.fixedDeltaTime + 1);
 
+		//var trans = GetComponent<Transform> ();
+		transform.rotation = Quaternion.LookRotation(movement);
 		// TODO: restrict x,y,z
 	}
 }
