@@ -10,14 +10,10 @@ public class PlayerController : MonoBehaviour {
 	public Vector3 rightStick;
 	public float leftTrigger;
 	public float rightTrigger;
-<<<<<<< Updated upstream
 	public Color tankColour;
-
-=======
 	public Text countText;
 
 	private int ballCount;
->>>>>>> Stashed changes
 
 
 	// Use this for initialization
@@ -61,6 +57,6 @@ public class PlayerController : MonoBehaviour {
 
 	void SetCountText ()
 	{
-		countText.text = "Count: " + ballCount.ToString ();
+		//countText.text = "Count: " + ballCount.ToString ();
 	}
 }

@@ -3,7 +3,6 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
-<<<<<<< Updated upstream
 	public Color[] tankColours = new Color[]
 	{   new Color(0,0,0),
 		new Color(0.1f,0.5f,0.2f),
@@ -11,7 +10,7 @@ public class GameManager : MonoBehaviour {
 		new Color(0.5f,0,0),
 		new Color(0,0.5f,0.5f)};
 	
-=======
+
 	public GameObject pickup;
 	public GameObject badPickup;
 	public Vector3 spawnValues;
@@ -22,7 +21,6 @@ public class GameManager : MonoBehaviour {
 	public float startWait;
 	public float waveWait;
 
->>>>>>> Stashed changes
 	// Use this for initialization
 	void Start () {
 		StartCoroutine (SpawnWaves ());
