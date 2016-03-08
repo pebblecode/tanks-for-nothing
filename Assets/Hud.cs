@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Text;
+using System.Linq;
 
 public class Hud : MonoBehaviour
 {
@@ -11,13 +12,12 @@ public class Hud : MonoBehaviour
 	public GameObject[] players;
 
 	public UnityEngine.UI.Text[] scores;
+	public UnityEngine.UI.Text winner;
 	// Use this for initialization
 	void Start ()
 	{
-		//score = GetComponent<UnityEngine.UI.Text> ();
-		//score.text = "WOAH";
-
-		scores = GetComponentsInChildren<UnityEngine.UI.Text> ();
+		var children = GetComponentsInChildren<UnityEngine.UI.Text> ();
+		scores = children.Where(s => s.name.Contains("Score")).ToArray();
 		foreach (var s in scores) {
 			s.gameObject.SetActive (false);
 		}
@@ -31,21 +31,18 @@ public class Hud : MonoBehaviour
 			var playerController = player.GetComponent<PlayerController> ();
 			var health = player.GetComponent<TankHealth> ();
 			var pi = playerController.playerNumber - 1;
-			scores[pi].text = string.Format("Health: {0}\nAmmo: {1}\n", 
+			scores [pi].gameObject.SetActive (true);
+			scores [pi].text = string.Format("Health: {0}\nAmmo: {1}\n", 
 				Mathf.Ceil(health.health), health.ammo);
 			scores [pi].color = playerController.tankColour;
-			scores [pi].gameObject.SetActive (true);
 		}
 
-		/*players = GameObject.FindGameObjectsWithTag ("Player");
-
-		var sb = new System.Text.StringBuilder ();
-		foreach (var player in players) {
-			var playerController = player.GetComponent<PlayerController> ();
-			var health = player.GetComponent<TankHealth> ();
-			if (playerController != null && health != null)
-				sb.AppendFormat("{0}: Health {1} Ammo {2}\n", playerController.playerNumber, Mathf.Ceil(health.health), health.ammo);
-		}
-		score.text = sb.ToString ();*/
+		if (players.Length == 1 && winner != null) {
+			Debug.Log ("One player");
+			var playerController = players[0].GetComponent<PlayerController> ();
+			winner.color = playerController.tankColour;
+			winner.text = string.Format ("Player {0} Wins!", playerController.playerNumber);
+		} else
+			winner.text = "";
 	}
 }
