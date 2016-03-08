@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour {
 	public float rightTrigger;
 	public Color tankColour;
 	public Text countText;
+	public bool aButton;
 
 	private int ballCount;
 
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour {
 		rightStick = new Vector3 (Input.GetAxis ("R_XAxis_"+i), 0, Input.GetAxis ("R_YAxis_"+i));
 		leftTrigger = Input.GetAxis ("TriggersL_"+i);
 		rightTrigger = Input.GetAxis ("TriggersR_"+i);
+		aButton = Input.GetButtonDown ("A_"+i);
 	}
 
 	void OnTriggerEnter(Collider other) 
@@ -47,9 +49,9 @@ public class PlayerController : MonoBehaviour {
 			ballCount = ballCount + 1;
 			SetCountText ();
 		}
-		if (other.gameObject.CompareTag ("Bad Pickup")) {
-			other.gameObject.SetActive (false);
-		}
+		// if (other.gameObject.CompareTag ("Bad Pickup")) {
+		// 	other.gameObject.SetActive (false);
+		// }
 		if (other.gameObject.CompareTag ("Goal")) {
 		}
 
