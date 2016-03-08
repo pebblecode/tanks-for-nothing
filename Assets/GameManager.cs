@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour {
 
@@ -21,6 +23,8 @@ public class GameManager : MonoBehaviour {
 	public float startWait;
 	public float waveWait;
 	public AudioSource music;
+	public float restartTimer;
+
 	// Use this for initialization
 	void Start () {
 		StartCoroutine (SpawnWaves ());
@@ -35,6 +39,16 @@ public class GameManager : MonoBehaviour {
 		}
 
 		CreateLevel ();
+	}
+
+	void Update() {
+		var players = GameObject.FindGameObjectsWithTag ("Player");
+		if (players.Length == 1 && restartTimer == 0) {
+			restartTimer = Time.time + 30;
+		}
+		if (players.Length == 1 && restartTimer != 0 && restartTimer < Time.time) {
+			SceneManager.LoadScene ("Arena");
+		}
 	}
 
 	Vector3 PointInLevel()

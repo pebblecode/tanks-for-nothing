@@ -38,7 +38,7 @@ public class Hud : MonoBehaviour
 		}
 
 		if (players.Length == 1 && winner != null) {
-			Debug.Log ("One player");
+			//Debug.Log ("One player");
 			var playerController = players[0].GetComponent<PlayerController> ();
 			winner.color = playerController.tankColour;
 			winner.text = string.Format ("Player {0} Wins!", playerController.playerNumber);
