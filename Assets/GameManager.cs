@@ -27,19 +27,14 @@ public class GameManager : MonoBehaviour {
 		var controllers = Input.GetJoystickNames ();
 		var resource = Resources.Load<GameObject>("Player");
 
-		int i = 1;
-		foreach (var _ in controllers) {
+		for (int i = 1; i <= controllers.Length; ++i) {
 			var playerClone = (GameObject)Instantiate(resource, new Vector3(5*i,0,1), new Quaternion());
 			var pc = playerClone.GetComponent<PlayerController> ();
 			pc.playerNumber = i;
 			pc.tankColour = tankColours[i];
-			++i;
-		}
-
-
-
-			
+		}		
 	}
+
 	IEnumerator SpawnWaves ()
 	{
 		yield return new WaitForSeconds (startWait);
