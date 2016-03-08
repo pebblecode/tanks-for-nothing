@@ -28,8 +28,17 @@ public class Movement : MonoBehaviour {
 		
 		if (isGrounded) {
 			if (playerController.aButton) {
-				rb.AddForce(new Vector3(0, 100, 0) * 10);
+				rb.AddForce(new Vector3(0, 100, 0) * 5);
 			}
 		}
+
+		var turret = transform.Find("Tank/TankRenderers/TankTurret");
+
+		if (playerController.rightStick.sqrMagnitude > 0.1) {
+			//Debug.Log(string.Format("Right: x= {0} z={1} ", playerController.rightStick.x, playerController.rightStick.z));
+			var dir =  new Vector3(playerController.rightStick.x, 0, -playerController.rightStick.z);
+			turret.rotation = Quaternion.LookRotation (dir);
+		}
+
 	}
 }
