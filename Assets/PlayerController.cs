@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -54,8 +53,5 @@ public class PlayerController : MonoBehaviour {
 		// if (other.gameObject.CompareTag ("Goal")) {
 		// 
 	}
-	void SetCountText () {
-		var score = GetComponent<UnityEngine.UI.Text> ();
-		score.text = "WOAH";
-	}
+
 }
