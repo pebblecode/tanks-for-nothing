@@ -28,7 +28,7 @@ public class Turret : MonoBehaviour {
 			var shell = Resources.Load<GameObject>("Shell");
 			var shellInstane = (GameObject)Instantiate(shell, turretFire.position, new Quaternion());
 			var shellRigidbody = shellInstane.GetComponent<Rigidbody> ();
-			shellRigidbody.velocity = turret.forward * 75;
+			shellRigidbody.velocity = turret.forward * 60;
 			shellRigidbody.rotation = Quaternion.LookRotation (turret.forward);
 		}
 	}
