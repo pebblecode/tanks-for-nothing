@@ -11,10 +11,9 @@ public class PlayerController : MonoBehaviour {
 	public float leftTrigger;
 	public float rightTrigger;
 	public Color tankColour;
-	public Text countText;
 	public bool aButton;
 
-	private int ballCount;
+	public int ballCount = 0;
 
 
 	// Use this for initialization
@@ -28,7 +27,7 @@ public class PlayerController : MonoBehaviour {
 			renderers[i].material.color = tankColour;
 		}
 		ballCount = 0;
-		SetCountText ();
+		// SetCountText ();
 	}
 	
 	// Update is called once per frame
@@ -53,12 +52,10 @@ public class PlayerController : MonoBehaviour {
 		// 	other.gameObject.SetActive (false);
 		// }
 		// if (other.gameObject.CompareTag ("Goal")) {
-		// }
-
+		// 
 	}
-
-	void SetCountText ()
-	{
-		//countText.text = "Count: " + ballCount.ToString ();
+	void SetCountText () {
+		var score = GetComponent<UnityEngine.UI.Text> ();
+		score.text = "WOAH";
 	}
 }

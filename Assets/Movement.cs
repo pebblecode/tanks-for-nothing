@@ -5,6 +5,7 @@ public class Movement : MonoBehaviour {
 
 	public float distToGround;
 	public bool isGrounded;
+	public int speedMultiplier;
 
 	// Use this for initialization
 	void Start () {
@@ -20,17 +21,23 @@ public class Movement : MonoBehaviour {
 
 		var rb = GetComponent<Rigidbody> ();
 
-		var movement = new Vector3 (playerController.leftStick.x, playerController.leftStick.y, -playerController.leftStick.z);
-		rb.AddForce (movement * 30);	
+		var movement = new Vector3 (playerController.leftStick.x, 0, -playerController.leftStick.z);
 
-		if (movement.sqrMagnitude > 0.1)
-			transform.rotation = Quaternion.LookRotation(movement);
-		
+		speedMultiplier = 30;
+
 		if (isGrounded) {
+
+			speedMultiplier = 5;
+
+			if (movement.sqrMagnitude > 0.1)
+				transform.rotation = Quaternion.LookRotation(movement);
+		
 			if (playerController.aButton) {
 				rb.AddForce(new Vector3(0, 100, 0) * 5);
 			}
 		}
+
+		rb.AddForce (movement * 30);	
 
 		var turret = transform.Find("Tank/TankRenderers/TankTurret");
 
