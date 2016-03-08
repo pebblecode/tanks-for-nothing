@@ -8,5 +8,4 @@ public class StartMenuItem : MonoBehaviour {
 		Debug.Log ("Clicked");
 		SceneManager.LoadScene ("Arena");
 	}
-		
 }

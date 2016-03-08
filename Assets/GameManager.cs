@@ -33,6 +33,48 @@ public class GameManager : MonoBehaviour {
 			pc.playerNumber = i;
 			pc.tankColour = tankColours[i];
 		}
+
+		CreateLevel ();
+	}
+
+	Vector3 PointInLevel()
+	{
+		return new Vector3(Random.Range(-40.0f, 40.0f), 0, Random.Range(-40.0f, 40.0f));
+	}
+
+	Vector3 RandomDirection()
+	{
+		return new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f));
+	}
+
+	string[] duneResources = new string[] {
+		"Dune1",
+		"Dune2",
+		"Concrete",
+		"Crater01"
+	};
+		
+	string[] treeResources = new string[] {
+		"Cactus",
+		"Tree",
+		"PalmTree"
+	};
+
+
+	void CreateLevel ()
+	{
+		// Dunes
+		for (int i = 0; i < 20; ++i) {
+			var resource = Resources.Load (duneResources [Random.Range (0, duneResources.Length)]);
+			Instantiate(resource, PointInLevel(), Quaternion.LookRotation(RandomDirection()));
+		}
+
+		// Tree
+		for (int i = 0; i < 10; ++i) {
+			var resource = Resources.Load (treeResources [Random.Range (0, treeResources.Length)]);
+			Instantiate(resource, PointInLevel(), Quaternion.LookRotation(RandomDirection()));
+		}
+			
 	}
 
 	IEnumerator SpawnWaves ()

@@ -27,17 +27,17 @@ public class Movement : MonoBehaviour {
 
 		if (isGrounded) {
 
-			speedMultiplier = 5;
+			speedMultiplier = 25;
 
 			if (movement.sqrMagnitude > 0.1)
 				transform.rotation = Quaternion.LookRotation(movement);
 		
 			if (playerController.aButton) {
-				rb.AddForce(new Vector3(0, 100, 0) * 5);
+				rb.AddForce(new Vector3(0, 100, 0) * 25);
 			}
 		}
 
-		rb.AddForce (movement * 30);	
+		rb.AddForce (movement * 40);	
 
 		var turret = transform.Find("Tank/TankRenderers/TankTurret");
 
