@@ -3,9 +3,6 @@ using System.Collections;
 
 public class Movement : MonoBehaviour {
 
-	public float terminalVelocity = 10;
-	public float maxAcceleration = 100;
-
 	// Use this for initialization
 	void Start () {
 	}
@@ -18,10 +15,16 @@ public class Movement : MonoBehaviour {
 		var rb = GetComponent<Rigidbody> ();
 
 		rb.AddForce (movement * 10);
-		//var idealDrag = maxAcceleration / terminalVelocity;
-		//rb.drag = idealDrag / (idealDrag * Time.fixedDeltaTime + 1);
 
-		//var trans = GetComponent<Transform> ();
-		transform.rotation = Quaternion.LookRotation(movement);
+		if (movement.sqrMagnitude > 0.1)
+			transform.rotation = Quaternion.LookRotation(movement);
+
+		var turret = transform.Find("Tank/TankRenderers/TankTurret");
+
+		if (playerController.rightStick.sqrMagnitude > 0.1) {
+			//Debug.Log(string.Format("Right: x= {0} z={1} ", playerController.rightStick.x, playerController.rightStick.z));
+			var dir =  new Vector3(playerController.rightStick.x, 0, -playerController.rightStick.z);
+			turret.rotation = Quaternion.LookRotation (dir);
+		}
 	}
 }
