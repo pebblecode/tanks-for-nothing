@@ -28,7 +28,7 @@ public class Movement : MonoBehaviour {
 		
 		if (isGrounded) {
 			if (playerController.aButton) {
-				rb.AddForce(new Vector3(0, 100, 0) * 10);
+				rb.AddForce(new Vector3(0, 100, 0) * 5);
 			}
 		}
 
