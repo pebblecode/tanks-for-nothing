@@ -21,7 +21,7 @@ public class Movement : MonoBehaviour {
 		var rb = GetComponent<Rigidbody> ();
 
 		var movement = new Vector3 (playerController.leftStick.x, playerController.leftStick.y, -playerController.leftStick.z);
-		rb.AddForce (movement * 50);	
+		rb.AddForce (movement * 30);	
 
 		if (movement.sqrMagnitude > 0.1)
 			transform.rotation = Quaternion.LookRotation(movement);
