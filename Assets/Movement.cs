@@ -19,6 +19,11 @@ public class Movement : MonoBehaviour {
 		if (movement.sqrMagnitude > 0.1)
 			transform.rotation = Quaternion.LookRotation(movement);
 
+		if (playerController.aButton) {
+			Debug.Log("YEA");
+			rb.AddForce(new Vector3(0, 100, 0) * 10);
+		}
+
 		var turret = transform.Find("Tank/TankRenderers/TankTurret");
 
 		if (playerController.rightStick.sqrMagnitude > 0.1) {
