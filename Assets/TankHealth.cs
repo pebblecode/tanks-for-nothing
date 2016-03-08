@@ -13,23 +13,21 @@ public class TankHealth : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter(Collision collision) {
-		//if (collision.gameObject.GetComponent<Rigidbody>
 		if (collision.gameObject.name.Contains ("Shell") && 
 			collision.gameObject.GetComponent<Shell>().owner != gameObject &&
 			collision.relativeVelocity.sqrMagnitude > 1000)
 		{
-			Debug.Log ("Hit: " + collision.relativeVelocity.sqrMagnitude);
-			health -= (collision.relativeVelocity.sqrMagnitude/360.0f);
+			health -= (collision.relativeVelocity.sqrMagnitude/220.0f);
+			Debug.Log ("Hit: " + health);
 			if (health < 0) {
 				Debug.Log ("Dead");
+				Destroy (gameObject);
 			}
 		}
 
 		if (collision.relativeVelocity.sqrMagnitude < 1000 && 
 			collision.gameObject.name.Contains ("Shell")) {
-			Debug.Log ("Collect");
 			ammo += 1;
-
 			Destroy (collision.gameObject);
 		}
 	}
