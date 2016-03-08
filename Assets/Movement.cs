@@ -17,13 +17,11 @@ public class Movement : MonoBehaviour {
 		var movement = new Vector3 (playerController.leftStick.x, playerController.leftStick.y, -playerController.leftStick.z);
 		var rb = GetComponent<Rigidbody> ();
 
-		rb.AddForce (movement * 100);
-
-		var idealDrag = maxAcceleration / terminalVelocity;
-		rb.drag = idealDrag / (idealDrag * Time.fixedDeltaTime + 1);
+		rb.AddForce (movement * 10);
+		//var idealDrag = maxAcceleration / terminalVelocity;
+		//rb.drag = idealDrag / (idealDrag * Time.fixedDeltaTime + 1);
 
 		//var trans = GetComponent<Transform> ();
 		transform.rotation = Quaternion.LookRotation(movement);
-		// TODO: restrict x,y,z
 	}
 }
