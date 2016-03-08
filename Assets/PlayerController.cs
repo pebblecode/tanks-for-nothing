@@ -10,9 +10,23 @@ public class PlayerController : MonoBehaviour {
 	public float leftTrigger;
 	public float rightTrigger;
 
+	public Color[] colours = new Color[]
+	{   new Color(255,0,255),
+		new Color(255,0,255),
+		new Color(0,0,255),
+		new Color(255,0,0),
+		new Color(0,255,255)};
+
 	// Use this for initialization
 	void Start () {
+		MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer> ();
 
+		// Go through all the renderers...
+		for (int i = 0; i < renderers.Length; i++)
+		{
+			// ... set their material color to the color specific to this tank.
+			renderers[i].material.color = colours[playerNumber];
+		}
 	}
 	
 	// Update is called once per frame

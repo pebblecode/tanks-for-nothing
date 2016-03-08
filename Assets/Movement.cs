@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour {
 		var movement = new Vector3 (playerController.leftStick.x, playerController.leftStick.y, -playerController.leftStick.z);
 		var rb = GetComponent<Rigidbody> ();
 
-		rb.AddForce (movement * 1000);
+		rb.AddForce (movement * 100);
 
 		var idealDrag = maxAcceleration / terminalVelocity;
 		rb.drag = idealDrag / (idealDrag * Time.fixedDeltaTime + 1);
