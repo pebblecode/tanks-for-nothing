@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour {
 			Destroy (other.gameObject.GetComponent<Rigidbody>());
 			other.gameObject.SetActive (false);
 			ballCount = ballCount + 1;
-			SetCountText ();
+		//	SetCountText ();
 		}
 		// if (other.gameObject.CompareTag ("Bad Pickup")) {
 		// 	other.gameObject.SetActive (false);
