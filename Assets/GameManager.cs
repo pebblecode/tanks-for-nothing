@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
 	public float spawnWait;
 	public float startWait;
 	public float waveWait;
-
+	public AudioSource music;
 	// Use this for initialization
 	void Start () {
 		StartCoroutine (SpawnWaves ());
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour {
 			var pc = playerClone.GetComponent<PlayerController> ();
 			pc.playerNumber = i;
 			pc.tankColour = tankColours[i];
-		}		
+		}
 	}
 
 	IEnumerator SpawnWaves ()
