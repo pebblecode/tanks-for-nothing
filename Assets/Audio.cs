@@ -19,7 +19,7 @@ public class Audio : MonoBehaviour {
 	}
 
 	public void Fire() {
-		fireAudioSource.clip = fire[player.playerNumber];
+		fireAudioSource.clip = fire[player.playerNumber-1];
 		fireAudioSource.Play();		
 	}
 
