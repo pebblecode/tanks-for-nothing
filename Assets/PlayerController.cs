@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -9,8 +10,14 @@ public class PlayerController : MonoBehaviour {
 	public Vector3 rightStick;
 	public float leftTrigger;
 	public float rightTrigger;
+<<<<<<< Updated upstream
 	public Color tankColour;
 
+=======
+	public Text countText;
+
+	private int ballCount;
+>>>>>>> Stashed changes
 
 
 	// Use this for initialization
@@ -23,6 +30,8 @@ public class PlayerController : MonoBehaviour {
 			// ... set their material color to the color specific to this tank.
 			renderers[i].material.color = tankColour;
 		}
+		ballCount = 0;
+		SetCountText ();
 	}
 	
 	// Update is called once per frame
@@ -32,5 +41,26 @@ public class PlayerController : MonoBehaviour {
 		rightStick = new Vector3 (Input.GetAxis ("R_XAxis_"+i), 0, Input.GetAxis ("R_YAxis_"+i));
 		leftTrigger = Input.GetAxis ("TriggersL_"+i);
 		rightTrigger = Input.GetAxis ("TriggersR_"+i);
+	}
+
+	void OnTriggerEnter(Collider other) 
+	{
+		if (other.gameObject.CompareTag ("Pick Up")) {
+			Destroy (other.gameObject.GetComponent<Rigidbody>());
+			other.gameObject.SetActive (false);
+			ballCount = ballCount + 1;
+			SetCountText ();
+		}
+		if (other.gameObject.CompareTag ("Bad Pickup")) {
+			other.gameObject.SetActive (false);
+		}
+		if (other.gameObject.CompareTag ("Goal")) {
+		}
+
+	}
+
+	void SetCountText ()
+	{
+		countText.text = "Count: " + ballCount.ToString ();
 	}
 }
