@@ -24,11 +24,17 @@ public class Turret : MonoBehaviour {
 			turret.rotation = Quaternion.LookRotation (dir);
 		}	
 
-		if (playerController.rightTrigger > 0.5 && lastShot + 0.5 < Time.time) {
+		var health = GetComponent<TankHealth> ();
+
+		if (health.ammo > 0 &&
+			playerController.rightTrigger > 0.5 && lastShot + 0.5 < Time.time) {
 			audio.Fire ();
 			lastShot = Time.time;
+			health.ammo -= 1;
 			var shell = Resources.Load<GameObject>("Shell");
 			var shellInstane = (GameObject)Instantiate(shell, turretFire.position, new Quaternion());
+			var shellComponent = shellInstane.GetComponent<Shell> ();
+			shellComponent.owner = gameObject;
 			var shellRigidbody = shellInstane.GetComponent<Rigidbody> ();
 			shellRigidbody.velocity = turret.forward * 60;
 			shellRigidbody.rotation = Quaternion.LookRotation (turret.forward);
