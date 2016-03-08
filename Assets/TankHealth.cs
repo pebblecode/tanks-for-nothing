@@ -28,7 +28,8 @@ public class TankHealth : MonoBehaviour {
 		if (collision.relativeVelocity.sqrMagnitude < 1000 && 
 			collision.gameObject.name.Contains ("Shell")) {
 			ammo += 1;
-			Destroy (collision.gameObject);
+			//Destroy (collision.gameObject);
+			collision.gameObject.SetActive(false);
 		}
 	}
 

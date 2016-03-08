@@ -8,4 +8,7 @@ public class Tracked : MonoBehaviour {
 		TrackingCamera.players.Add(this.gameObject);	
 	}
 
+	void OnDestroy () {
+		TrackingCamera.players.Remove(this.gameObject);
+	}
 }
